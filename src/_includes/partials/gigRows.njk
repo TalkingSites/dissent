@@ -1,0 +1,9 @@
+<ol class="gigs">
+{%- for e in rows %}
+<li><a class="gig" href="{{ e.url }}">
+<time datetime="{{ e.data.eventDate | formatDate('YYYY-MM-DD') }}"><span>{{ e.data.eventDate | formatDate("ddd") }}</span><b>{{ e.data.eventDate | formatDate("D") }}</b><span>{{ e.data.eventDate | formatDate("MMM") }}</span></time>
+<div><h3>{{ e.data.title }}</h3>{% if e.data.description %}<p>{{ e.data.description }}</p>{% endif %}</div>
+<span class="gig-time">{{ e.data.startTime }}</span>
+</a></li>
+{%- endfor %}
+</ol>

@@ -1,0 +1,3 @@
+{%- if sectionLinkText and sectionLinkUrl %}
+<p class="section-link"><a class="{{ 'btn-d' if sectionLinkStyle == 'button' else 'link-arrow' }}" href="{{ sectionLinkUrl }}">{{ sectionLinkText }}{% if sectionLinkStyle != 'button' %} <i class="bi bi-arrow-right" aria-hidden="true"></i>{% endif %}</a></p>
+{%- endif %}

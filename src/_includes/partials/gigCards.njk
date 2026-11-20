@@ -1,0 +1,12 @@
+<ol class="gig-cards">
+{%- for e in rows %}
+<li><a class="gig-card" href="{{ e.url }}">
+<div class="gig-poster">{% if e.data.image %}<img src="{{ e.data.image }}" alt="Poster for {{ e.data.title }}" width="500" height="250" loading="lazy"/>{% else %}<img src="{{ site.logo }}" alt="" class="gig-poster-logo" loading="lazy"/>{% endif %}
+<time datetime="{{ e.data.eventDate | formatDate('YYYY-MM-DD') }}"><span>{{ e.data.eventDate | formatDate("ddd") }}</span><b>{{ e.data.eventDate | formatDate("D") }}</b><span>{{ e.data.eventDate | formatDate("MMM") }}</span></time></div>
+<div class="gig-card-body">
+<h3>{{ e.data.title }}</h3>
+<p class="gig-meta">{% if e.data.startTime %}<span>{{ e.data.startTime }}</span>{% endif %}{% if e.data.price %}<span>{{ e.data.price }}</span>{% endif %}</p>
+</div>
+</a></li>
+{%- endfor %}
+</ol>

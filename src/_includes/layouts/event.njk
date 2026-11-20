@@ -1,0 +1,37 @@
+---
+layout: base.njk
+---
+{%- set past = (eventDate | formatDate("YYYY-MM-DD")) < today %}
+<section class="head head-gig">
+<div class="container gig-top{% if not image %} gig-top-solo{% endif %}">
+<div>
+<p class="head-date">{{ eventDate | formatDate("dddd D MMMM YYYY") }}</p>
+<h1>{{ title }}</h1>
+<ul class="gig-facts-list">
+{% if startTime %}<li><i class="bi bi-clock" aria-hidden="true"></i><span>{{ startTime }}{% if endTime %} to {{ endTime }}{% endif %}</span></li>{% endif %}
+{% if price %}<li><i class="bi bi-ticket-perforated" aria-hidden="true"></i><span>{{ price }}</span></li>{% endif %}
+<li><i class="bi bi-geo-alt" aria-hidden="true"></i>{% if location %}{% if locationLink %}<a class="text-preline" href="{{ locationLink }}" rel="noopener">{{ location }}</a>{% else %}<span class="text-preline">{{ location }}</span>{% endif %}{% else %}<a href="{{ site.map }}" rel="noopener">Dissent, {{ site.address | replace("\n", ", ") }}</a>{% endif %}</li>
+</ul>
+{% if past %}<p class="gig-past">This gig has happened.</p>{% elif link %}<a class="btn-d" href="{{ link }}" rel="noopener">{{ text or "Get tickets" }}</a>{% endif %}
+</div>
+{% if image %}<img class="gig-top-poster" src="{{ image }}" alt="Poster for {{ title }}" width="500" height="250" fetchpriority="high"/>{% endif %}
+</div>
+</section>
+<section class="band">
+<div class="container prose-narrow rich">
+{% set body = content | striptags | trim %}
+{% if body %}{{ content | safe }}{% elif description %}<p class="lead">{{ description }}</p>{% endif %}
+<p>{{ "Was" if past else "Live" }} at Dissent, {{ site.street }} in Canberra City, between the merry-go-round and Garema Place{% if startTime %}, from {{ startTime }} on {{ eventDate | formatDate("dddd D MMMM") }}{% endif %}. <a href="/get-in-touch/">How to find us</a>.</p>
+{%- if recapPost %}{% set recap = collections.posts | entryBySlug(recapPost) %}
+<p><a class="link-arrow" href="{{ recap.url if recap else recapPost }}">How it went <i class="bi bi-arrow-right" aria-hidden="true"></i></a></p>
+{%- endif %}
+{%- if gallery and not (content | hasGallery) %}{% set path = gallery | stripLeadingSlash %}{% include "partials/gallery.njk" %}{%- endif %}
+{%- set others = [] %}
+{%- for e in collections.upcomingEvents %}{% if e.url != page.url and others.length < 3 %}{% set others = (others.push(e), others) %}{% endif %}{% endfor %}
+{%- if others.length %}
+<h2 class="more-gigs">Also coming up</h2>
+{% set rows = others %}{% include "partials/gigCards.njk" %}
+{%- endif %}
+<p class="mt-5"><a class="link-arrow" href="/whats-on/"><i class="bi bi-arrow-left" aria-hidden="true"></i> What's on</a></p>
+</div>
+</section>

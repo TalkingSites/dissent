@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg sticky-top nav-d" data-bs-theme="dark" id="navbar-main" aria-label="Main">
+<div class="container">
+<a class="navbar-brand" href="/"><img src="{{ site.logo }}" alt="Dissent, home" width="120" height="63"/></a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Menu"><i class="bi bi-list" aria-hidden="true"></i></button>
+<div id="nav" class="collapse navbar-collapse">
+<ul class="navbar-nav ms-auto align-items-lg-center">
+{%- for item in navbar.items %}
+{%- set here = page.url == item.href or (item.href != "/" and page.url.startsWith(item.href)) %}
+<li class="nav-item"><a class="nav-link{% if here %} active{% endif %}"{% if here %} aria-current="page"{% endif %} href="{{ item.href }}">{{ item.title }}</a></li>
+{%- endfor %}
+{%- for p in collections.menuPages %}
+<li class="nav-item"><a class="nav-link{% if page.url == p.url %} active{% endif %}" href="{{ p.url }}">{{ p.data.title }}</a></li>
+{%- endfor %}
+<li class="nav-item nav-social"><a class="nav-link" href="{{ site.instagram }}" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a></li>
+</ul>
+</div>
+</div>
+</nav>

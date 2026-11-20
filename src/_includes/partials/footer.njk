@@ -1,0 +1,22 @@
+<footer class="foot" id="footer-main">
+<div class="container">
+<p class="foot-big">Live music is almost a revolutionary act. <a href="/whats-on/">See you down the front.</a></p>
+<div class="foot-grid">
+<img class="foot-logo" src="{{ site.logo }}" alt="" width="180" height="95" loading="lazy"/>
+<address>
+Dissent Cafe and Bar<br/>
+{{ site.address | replace("\n", "<br/>") | safe }}<br/>
+<a href="mailto:{{ site.email }}">{{ site.email }}</a>
+</address>
+<ul class="foot-links">
+{%- for item in navbar.items %}{% if item.footer %}<li><a href="{{ item.href }}">{{ item.title }}</a></li>{% endif %}{% endfor %}
+</ul>
+<ul class="foot-links">
+<li><a href="{{ site.instagram }}" rel="noopener"><i class="bi bi-instagram" aria-hidden="true"></i> Instagram</a></li>
+<li><a href="{{ site.facebook }}" rel="noopener"><i class="bi bi-facebook" aria-hidden="true"></i> Facebook</a></li>
+<li><a href="/events/feed.xml"><i class="bi bi-rss" aria-hidden="true"></i> Gig feed</a></li>
+</ul>
+</div>
+<p class="foot-base">Est. 2024 on Ngunnawal Country. &copy; {{ global.currentYear }} Dissent Cafe and Bar.</p>
+</div>
+</footer>

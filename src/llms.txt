@@ -1,0 +1,10 @@
+# Dissent Cafe and Bar
+
+> A live music venue and cafe bar at 181 City Walk, Canberra City (Civic), ACT 2601, between the merry-go-round and Garema Place. Open since November 2024. Gigs are ticketed on Humanitix.
+
+- [What's on](https://www.dissentcafeandbar.com.au/whats-on/): upcoming gigs and open mic nights, each with its own page and ticket link
+- [About](https://www.dissentcafeandbar.com.au/about-us/): who Dissent is
+- [Play here](https://www.dissentcafeandbar.com.au/play/): booking a gig as a band or musician
+- [Find us](https://www.dissentcafeandbar.com.au/get-in-touch/): address, map, email and social links
+- [Notes](https://www.dissentcafeandbar.com.au/posts/): writing from Dissent on live music and small venues
+- [Gig feed](https://www.dissentcafeandbar.com.au/events/feed.xml): Atom feed of gigs

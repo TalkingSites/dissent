@@ -1,0 +1,20 @@
+---
+layout: base.njk
+---
+<section class="head{% if image %} head-photo{% endif %}">
+{% if image %}<img src="{{ image }}" alt=""/>{% endif %}
+<div class="container">
+<p class="head-date">{{ postDate | formatDate("D MMMM YYYY") }}{% if author %} · {{ author }}{% endif %}</p>
+<h1>{{ title }}</h1>
+</div>
+</section>
+<section class="band">
+<div class="container prose-narrow rich">
+{{ content | safe }}
+{%- if eventPage %}{% set event = collections.events | entryBySlug(eventPage) %}
+<p><a class="link-arrow" href="{{ event.url if event else eventPage }}">The gig <i class="bi bi-arrow-right" aria-hidden="true"></i></a></p>
+{%- endif %}
+{%- if gallery and not (content | hasGallery) %}{% set path = gallery | stripLeadingSlash %}{% include "partials/gallery.njk" %}{%- endif %}
+<p class="mt-5"><a class="link-arrow" href="/posts/"><i class="bi bi-arrow-left" aria-hidden="true"></i> All notes</a></p>
+</div>
+</section>

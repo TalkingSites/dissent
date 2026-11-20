@@ -6,3 +6,4 @@ package-lock.json
 posts/.obsidian/
 .env
 .DS_Store
+.playwright-mcp/

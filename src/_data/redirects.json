@@ -1,0 +1,12 @@
+{
+  "note": "Old addresses from the WordPress site (and SpaceClub's /events/) that now live somewhere else. Each gets a small page that sends visitors and search engines on. Swap these for real 301s once the SpaceClub server can do redirects.",
+  "items": [
+    { "from": "/home/", "to": "/" },
+    { "from": "/events/", "to": "/whats-on/" },
+    { "from": "/category/uncategorized/", "to": "/posts/" },
+    { "from": "/author/djhowe/", "to": "/posts/" },
+    { "from": "/2026/", "to": "/posts/" },
+    { "from": "/2026/08/", "to": "/posts/" },
+    { "from": "/2026/08/20/", "to": "/posts/" }
+  ]
+}

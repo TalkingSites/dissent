@@ -1,0 +1,22 @@
+---
+layout: base.njk
+title: Notes | Dissent Cafe and Bar
+description: Words from Dissent on live music, small venues and Canberra.
+permalink: "/posts/"
+---
+{% set headTitle = "Notes" %}{% set headLead = "Words from behind the bar on live music, small venues and the city." %}{% set headImage = "" %}
+{% include "partials/pageHead.njk" %}
+<section class="band">
+<div class="container notes">
+{%- for p in collections.posts %}
+<a class="note" href="{{ p.url }}">
+{% if p.data.image %}<img src="{{ p.data.image }}" alt="" loading="lazy"/>{% endif %}
+<div>
+<p class="head-date">{{ p.data.postDate | formatDate("D MMMM YYYY") }}</p>
+<h2>{{ p.data.title }}</h2>
+{% if p.data.description %}<p>{{ p.data.description }}</p>{% endif %}
+</div>
+</a>
+{%- endfor %}
+</div>
+</section>

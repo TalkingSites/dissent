@@ -1,19 +1,9 @@
 {
   "items": [
-    {
-      "title": "Home",
-      "href": "/",
-      "footer": true
-    },
-    {
-      "title": "About",
-      "href": "/about",
-      "footer": true
-    },
-    {
-      "title": "Contact",
-      "href": "/contact",
-      "footer": true
-    }
+    { "title": "What's on", "href": "/whats-on/", "footer": true },
+    { "title": "About", "href": "/about-us/", "footer": true },
+    { "title": "Play here", "href": "/play/", "footer": true },
+    { "title": "Notes", "href": "/posts/", "footer": true },
+    { "title": "Find us", "href": "/get-in-touch/", "footer": true }
   ]
 }

@@ -1,0 +1,14 @@
+<section class="hero">
+{%- if heroImage == "/assets/images/crowd.webp" %}<img class="hero-photo" src="{{ heroImage }}" srcset="/assets/images/crowd-900.webp 900w, /assets/images/crowd.webp 1800w" sizes="100vw" alt="{{ heroAlt }}" fetchpriority="high"/>
+{%- else %}<img class="hero-photo" src="{{ heroImage }}" alt="{{ heroAlt }}" fetchpriority="high"/>{% endif %}
+<div class="container hero-inner">
+<img class="hero-logo" src="{{ site.logo }}" alt="Dissent" width="600" height="316"/>
+<h1>{{ heroTitle }}</h1>
+{% if heroLead %}<p class="hero-lead">{{ heroLead }}</p>{% endif %}
+<div class="actions">
+{% if heroAction %}<a class="btn-d" href="{{ heroLink }}">{{ heroAction }}</a>{% endif %}
+{% if heroAction2 %}<a class="btn-d btn-ghost" href="{{ heroLink2 }}">{{ heroAction2 }}</a>{% endif %}
+</div>
+</div>
+{% if heroStamp %}<p class="stamp" aria-hidden="true">{{ heroStamp }}</p>{% endif %}
+</section>

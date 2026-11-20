@@ -1,0 +1,19 @@
+<section class="band" id="gigs">
+<div class="container">
+<div class="band-head">
+<h2>{{ sectionTitle }}</h2>
+{%- include "partials/sectionLink.njk" %}
+</div>
+{% set upcoming = collections.upcomingEvents or [] %}
+{% if gigLimit and gigLimit != "all" %}{% set upcoming = upcoming | head(gigLimit | int) %}{% endif %}
+{% if upcoming | length %}
+{% set rows = upcoming %}{% include "partials/gigCards.njk" %}
+{% else %}
+<div class="none-yet rich">{{ sectionText | markdown | safe }}</div>
+{% endif %}
+{% if gigPast == "yes" and collections.pastEvents | length %}
+<h3 class="list-title">Been and gone</h3>
+{% set rows = collections.pastEvents | reverse | head(12) %}{% include "partials/gigRows.njk" %}
+{% endif %}
+</div>
+</section>

@@ -1,0 +1,45 @@
+{#- Structured data for search engines: the venue on every page, plus the gig, the gig list or the post. -#}
+{%- set venueId = site.canonical + "/#venue" %}
+{%- set venue = {
+  "@type": ["BarOrPub", "CafeOrCoffeeShop", "MusicVenue"],
+  "@id": venueId,
+  "name": site.title,
+  "url": site.canonical + "/",
+  "logo": site.canonical + site.logo,
+  "image": site.canonical + "/assets/images/preview.jpg",
+  "description": site.description,
+  "email": site.email,
+  "address": { "@type": "PostalAddress", "streetAddress": site.street, "addressLocality": site.locality, "addressRegion": site.region, "postalCode": site.postcode, "addressCountry": "AU" },
+  "geo": { "@type": "GeoCoordinates", "latitude": site.geo.lat, "longitude": site.geo.lng },
+  "hasMap": site.map,
+  "sameAs": [site.instagram, site.facebook, "https://collections.humanitix.com/" + site.humanitix]
+} %}
+{%- set graph = [venue] %}
+{%- if page.url == "/" %}
+{%- set graph = (graph.push({ "@type": "WebSite", "@id": site.canonical + "/#website", "url": site.canonical + "/", "name": site.title, "publisher": { "@id": venueId } }), graph) %}
+{%- endif %}
+{%- if eventDate %}
+
+{%- set gig = {
+  "@type": "MusicEvent",
+  "name": title,
+  "url": site.canonical + page.url,
+  "startDate": startDate or (eventDate | formatDate("YYYY-MM-DD")),
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": { "@id": venueId, "@type": "MusicVenue", "name": site.title, "address": venue.address },
+  "organizer": { "@id": venueId, "@type": "Organization", "name": site.title, "url": site.canonical + "/" }
+} %}
+{%- if endDate %}{% set gig = (gig | setAttribute("endDate", endDate)) %}{% endif %}
+{%- if description %}{% set gig = (gig | setAttribute("description", description)) %}{% endif %}
+{%- if image %}{% set gig = (gig | setAttribute("image", [(image if "://" in image else site.canonical + image)])) %}{% endif %}
+{%- if link %}{% set gig = (gig | setAttribute("offers", { "@type": "Offer", "url": link, "price": priceMin if priceMin != undefined else "", "priceCurrency": "AUD", "availability": "https://schema.org/InStock", "validFrom": "" } | removeEmpty)) %}{% endif %}
+{%- set graph = (graph.push(gig), graph) %}
+{%- elif postDate %}
+{%- set graph = (graph.push({ "@type": "BlogPosting", "headline": title, "url": site.canonical + page.url, "datePublished": postDate | formatDate("YYYY-MM-DD"), "author": { "@type": "Person", "name": author or site.title }, "publisher": { "@id": venueId }, "image": site.canonical + (image or "/assets/images/preview.jpg") }), graph) %}
+{%- elif page.url == "/whats-on/" %}
+{%- set items = [] %}
+{%- for e in collections.upcomingEvents %}{% set items = (items.push({ "@type": "ListItem", "position": loop.index, "url": site.canonical + e.url }), items) %}{% endfor %}
+{%- set graph = (graph.push({ "@type": "ItemList", "name": "What's on at Dissent", "itemListElement": items }), graph) %}
+{%- endif %}
+<script type="application/ld+json">{{ { "@context": "https://schema.org", "@graph": graph } | dump | safe }}</script>

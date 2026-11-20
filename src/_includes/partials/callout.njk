@@ -1,0 +1,7 @@
+<section class="band band-red callout" id="{{ sectionTitle | slugify }}">
+<div class="container callout-inner">
+<h2>{{ sectionTitle }}</h2>
+<div class="rich">{{ sectionText | markdown | safe }}
+{%- set sectionLinkStyle = "button" %}{% include "partials/sectionLink.njk" %}</div>
+</div>
+</section>

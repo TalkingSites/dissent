@@ -3,17 +3,27 @@
   "features": {
     "events": true,
     "posts": true,
-    "contentTypes": true,
-    "search": true,
+    "contentTypes": false,
+    "search": false,
     "gallery": true,
-    "forms": true,
+    "forms": false,
     "rss": true,
     "webmcp": true
   },
   "look": {
-    "modes": "light",
-    "colours": { "light": {}, "dark": {} },
-    "navbar": { "layout": "classic", "show": { "logo": true, "title": true, "search": true } },
-    "footer": { "divider": "stars", "dividerSvg": null, "colours": {} }
+    "modes": "dark",
+    "colours": {
+      "light": {},
+      "dark": {
+        "primary": "#e0322d",
+        "secondary": "#f2ead8",
+        "body": "#0f0d0c",
+        "text": "#f2ead8",
+        "link": "#ff5a4f",
+        "border": "#3a3330"
+      }
+    },
+    "navbar": { "layout": "classic", "show": { "logo": true, "title": false, "search": false } },
+    "footer": { "divider": "none", "dividerSvg": null, "colours": { "background": "#0a0908", "text": "#f2ead8" } }
   }
 }

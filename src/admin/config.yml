@@ -20,10 +20,10 @@ publish_mode: editorial_workflow
 
 # `npx decap-server` + the Eleventy dev server edits local files without signing in
 # (server.js leaves this out, so the built site always signs in with Authentik)
-local_backend: true
+local_backend: { url: "http://localhost:8191/api/v1" }
 
-site_url: http://localhost:8090
-display_url: http://localhost:8090
+site_url: http://localhost:8190
+display_url: http://localhost:8190
 
 media_folder: src/assets/images/uploads
 public_folder: /assets/images/uploads
@@ -63,6 +63,11 @@ collections:
           - { label: Description, name: description, widget: text }
           - { label: Logo, name: logo, widget: image }
           - { label: Favicon, name: favicon, widget: image }
+          - { label: Email, name: email, widget: string }
+          - { label: Address, name: address, widget: text }
+          - { label: Map link, name: map, widget: string }
+          - { label: Instagram, name: instagram, widget: string }
+          - { label: Facebook, name: facebook, widget: string }
           - { label: Search heading, name: searchTitle, widget: string }
           - { label: Search placeholder, name: searchPlaceholder, widget: string }
           - { name: baseUrl, widget: hidden }
@@ -103,7 +108,12 @@ collections:
       - { label: Location, name: location, widget: text, required: false }
       - { label: Map link, name: locationLink, widget: string, required: false, hint: "Paste a Google Maps (or any) link and the place becomes clickable" }
       - { label: "Hide the date, time and place at the top", name: hideEventDetails, widget: boolean, required: false, default: false, hint: "Then add the Event details block (+) wherever you want them in the text" }
-      - { label: Image, name: image, widget: image, required: false }
+      - { label: Poster, name: image, widget: image, required: false }
+      - { label: Price, name: price, widget: string, required: false, hint: "e.g. From $20, or Free" }
+      - { label: Tickets link, name: link, widget: string, required: false }
+      - { label: Tickets button text, name: text, widget: string, required: false, default: "Get tickets" }
+      # set by npm run sync-gigs: the gig's Humanitix page, so the next sync updates this file
+      - { name: humanitix, widget: hidden, required: false }
       - { label: Social preview image URL, name: preview_image, widget: string, required: false }
       - { label: Featured, name: featured, widget: boolean, required: false, default: false }
       - { label: Gallery folder, name: gallery, widget: sd-folder, leading_slash: true, required: false, hint: "Its photos show at the end of the page" }

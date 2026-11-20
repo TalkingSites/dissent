@@ -1,0 +1,6 @@
+{%- set words = tickerText.split(",") %}
+<section class="ticker" aria-label="{{ tickerText }}">
+<div class="ticker-track" aria-hidden="true">
+{%- for n in [1, 2] %}<span>{% for w in words %}<b>{{ w | trim }}</b><i class="bi bi-asterisk"></i>{% endfor %}</span>{% endfor %}
+</div>
+</section>

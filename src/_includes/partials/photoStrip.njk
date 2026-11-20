@@ -1,0 +1,5 @@
+<section class="strip" aria-label="Photos from the room">
+{%- for pair in [[stripImage1, stripAlt1], [stripImage2, stripAlt2], [stripImage3, stripAlt3], [stripImage4, stripAlt4]] %}
+{%- if pair[0] %}<figure><img src="{{ pair[0] }}" alt="{{ pair[1] }}" loading="lazy"/></figure>{% endif %}
+{%- endfor %}
+</section>

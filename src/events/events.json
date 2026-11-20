@@ -1,3 +1,4 @@
 {
-  "layout": "event.njk"
+  "layout": "event.njk",
+  "permalink": "/whats-on/{{ page.fileSlug.split('_') | last }}/"
 }
