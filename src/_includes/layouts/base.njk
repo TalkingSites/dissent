@@ -35,7 +35,11 @@
 <meta property="og:url" content="{{ pageUrl }}"/>
 <meta property="og:site_name" content="{{ site.title }}"/>
 <meta property="og:locale" content="en_AU"/>
-<meta property="og:image" content="{{ site.canonical }}{{ pageImage }}"/>
+{#- images load from wherever the site is served (site.url, set by Mission Control); the real domain still runs the old site -#}
+<meta property="og:image" content="{{ site.url or site.canonical }}{{ pageImage }}"/>
+{% if pageImage == "/assets/images/preview.jpg" %}<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+{% endif %}<meta property="og:image:alt" content="{{ title if image else 'The Dissent logo over a crowd dancing at a gig' }}"/>
 <meta name="twitter:card" content="summary_large_image"/>
 {% include "partials/schema.njk" %}
 <meta name="theme-color" content="#0f0d0c"/>

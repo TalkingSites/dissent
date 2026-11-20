@@ -1,12 +1,13 @@
 {#- Structured data for search engines: the venue on every page, plus the gig, the gig list or the post. -#}
 {%- set venueId = site.canonical + "/#venue" %}
+{%- set assets = site.url or site.canonical %}
 {%- set venue = {
   "@type": ["BarOrPub", "CafeOrCoffeeShop", "MusicVenue"],
   "@id": venueId,
   "name": site.title,
   "url": site.canonical + "/",
-  "logo": site.canonical + site.logo,
-  "image": site.canonical + "/assets/images/preview.jpg",
+  "logo": assets + site.logo,
+  "image": assets + "/assets/images/preview.jpg",
   "description": site.description,
   "email": site.email,
   "address": { "@type": "PostalAddress", "streetAddress": site.street, "addressLocality": site.locality, "addressRegion": site.region, "postalCode": site.postcode, "addressCountry": "AU" },
@@ -32,11 +33,11 @@
 } %}
 {%- if endDate %}{% set gig = (gig | setAttribute("endDate", endDate)) %}{% endif %}
 {%- if description %}{% set gig = (gig | setAttribute("description", description)) %}{% endif %}
-{%- if image %}{% set gig = (gig | setAttribute("image", [(image if "://" in image else site.canonical + image)])) %}{% endif %}
+{%- if image %}{% set gig = (gig | setAttribute("image", [(image if "://" in image else assets + image)])) %}{% endif %}
 {%- if link %}{% set gig = (gig | setAttribute("offers", { "@type": "Offer", "url": link, "price": priceMin if priceMin != undefined else "", "priceCurrency": "AUD", "availability": "https://schema.org/InStock", "validFrom": "" } | removeEmpty)) %}{% endif %}
 {%- set graph = (graph.push(gig), graph) %}
 {%- elif postDate %}
-{%- set graph = (graph.push({ "@type": "BlogPosting", "headline": title, "url": site.canonical + page.url, "datePublished": postDate | formatDate("YYYY-MM-DD"), "author": { "@type": "Person", "name": author or site.title }, "publisher": { "@id": venueId }, "image": site.canonical + (image or "/assets/images/preview.jpg") }), graph) %}
+{%- set graph = (graph.push({ "@type": "BlogPosting", "headline": title, "url": site.canonical + page.url, "datePublished": postDate | formatDate("YYYY-MM-DD"), "author": { "@type": "Person", "name": author or site.title }, "publisher": { "@id": venueId }, "image": assets + (image or "/assets/images/preview.jpg") }), graph) %}
 {%- elif page.url == "/whats-on/" %}
 {%- set items = [] %}
 {%- for e in collections.upcomingEvents %}{% set items = (items.push({ "@type": "ListItem", "position": loop.index, "url": site.canonical + e.url }), items) %}{% endfor %}
